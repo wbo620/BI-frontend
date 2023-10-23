@@ -25,12 +25,6 @@ const Login: React.FC = () => {
     };
   });
 
-  // useEffect(() => {
-  //   listChartByPageUsingPOST({}).then((res) => {
-  //     console.error('res', res);
-  //   });
-  // });
-
   /**
    * 登陆成功后，获取用户登录信息
    */
@@ -39,8 +33,8 @@ const Login: React.FC = () => {
     if (userInfo) {
       flushSync(() => {
         setInitialState((s) => ({
-          ...s,
           currentUser: userInfo,
+          ...s,
         }));
       });
     }
@@ -86,7 +80,7 @@ const Login: React.FC = () => {
           }}
           logo={<img alt="logo" src="/logo.svg" />}
           title="智能 BI"
-          subTitle={<p>有智慧的图表分析工具</p>}
+          subTitle={<a>有智慧的图表分析工具</a>}
           onFinish={async (values) => {
             await handleSubmit(values as API.UserLoginRequest);
           }}

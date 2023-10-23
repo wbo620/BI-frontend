@@ -49,12 +49,17 @@ export default [
     name: 'list.table-list',
     icon: 'table',
     path: '/list',
-    component: './TableList',
   },
   {
     path: '/',
     redirect: '/welcome',
   },
+  {
+    name: '添加图表',
+    path: '/add_chart',
+    component: './AddChart',
+  },
+
   {
     path: '*',
     layout: false,
