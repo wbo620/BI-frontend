@@ -98,6 +98,7 @@ const AddChart: React.FC = () => {
                 { label: '堆叠图', value: '堆叠图' },
                 { label: '雷达图', value: '雷达图' },
                 { label: '3D图', value: '3D图' },
+                { label: '动态排序折线图', value: '动态排序折线图' },
               ]}
             />
           </ProForm.Group>

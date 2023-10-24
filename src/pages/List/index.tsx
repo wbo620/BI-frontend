@@ -134,6 +134,7 @@ const Paa: React.FC = () => {
             <ProFormSelect
               name="chartType"
               label="图表类型"
+              width={200}
               request={async () => [
                 { label: '折线图', value: '折线图' },
                 { label: '柱状图', value: '柱状图' },
@@ -141,6 +142,7 @@ const Paa: React.FC = () => {
                 { label: '堆叠图', value: '堆叠图' },
                 { label: '雷达图', value: '雷达图' },
                 { label: '3D图', value: '3D图' },
+                { label: '动态排序折线图', value: '动态排序折线图' },
               ]}
             />
           </ProForm.Group>
