@@ -46,17 +46,18 @@ export default [
     ],
   },
   {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-  },
-  {
     path: '/',
     redirect: '/welcome',
   },
   {
     name: '添加图表',
-    path: '/add_chart',
+    path: '/list',
+    component: './List',
+  },
+  {
+    name: '数据分析',
+    icon: 'AreaChartOutlined',
+    path: '/addchart',
     component: './AddChart',
   },
 
