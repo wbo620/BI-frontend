@@ -49,18 +49,18 @@ export default [
     path: '/',
     redirect: '/welcome',
   },
-  {
-    name: '添加图表',
-    path: '/list',
-    component: './List',
-  },
+
   {
     name: '数据分析',
     icon: 'AreaChartOutlined',
     path: '/addchart',
     component: './AddChart',
   },
-
+  {
+    name: '添加图表',
+    path: '/list',
+    component: './List',
+  },
   {
     path: '*',
     layout: false,
