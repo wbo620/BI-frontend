@@ -20,6 +20,8 @@ export default [
         path: '/user/login',
         component: './User/Login',
       },
+      { name: 'register', path: '/user/register', component: './User/Register' },
+
     ],
   },
   {
@@ -57,9 +59,10 @@ export default [
     component: './AddChart',
   },
   {
-    name: '添加图表',
-    path: '/list',
-    component: './List',
+    name: '我的图表',
+    icon: 'PieChartOutlined',
+    path: '/mylist',
+    component: './MyList',
   },
   {
     path: '*',

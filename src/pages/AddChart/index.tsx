@@ -2,9 +2,7 @@ import { genChartByAiUsingPOST } from '@/services/icebi/chartController';
 import { Card } from 'antd';
 import ReactECharts from 'echarts-for-react';
 
-import { PageContainer, ProFormText } from '@ant-design/pro-components';
-import { ProFormUploadButton } from '@ant-design/pro-form';
-import { ProForm, ProFormSelect, ProFormTextArea } from '@ant-design/pro-form/lib';
+import { ProForm,PageContainer, ProFormText ,ProFormTextArea,ProFormUploadButton,ProFormSelect} from '@ant-design/pro-components';
 import { message, Spin } from 'antd';
 import React, { useState } from 'react';
 
@@ -118,6 +116,7 @@ const AddChart: React.FC = () => {
               setSubmitting(false);
             }}
           >
+
             <ProFormTextArea
               width="xl"
               label="分析需求"
@@ -163,7 +162,7 @@ const AddChart: React.FC = () => {
         </Card>
       </PageContainer>
 
-      <PageContainer title="图表和结论">
+      <PageContainer title="结论和图表">
         <div>
           {option ? (
             <div>

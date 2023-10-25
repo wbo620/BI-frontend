@@ -351,9 +351,11 @@ declare namespace API {
   };
 
   type UserRegisterRequest = {
+    avatarUrl?: string;
     checkPassword?: string;
     userAccount?: string;
     userPassword?: string;
+    username?: string;
   };
 
   type UserUpdateMyRequest = {
