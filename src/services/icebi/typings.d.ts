@@ -90,6 +90,7 @@ declare namespace API {
   };
 
   type Chart = {
+    [x: string]: string;
     chartData?: string;
     chartType?: string;
     createTime?: string;
