@@ -59,6 +59,12 @@ export default [
     component: './AddChart',
   },
   {
+    name: '数据分析(异步）',
+    icon: 'AreaChartOutlined',
+    path: '/addchart/Async',
+    component: './AddChartAsync',
+  },
+  {
     name: '我的图表',
     icon: 'PieChartOutlined',
     path: '/mylist',
