@@ -1,4 +1,9 @@
 declare namespace API {
+  type addUsingGETParams = {
+    /** name */
+    name?: string;
+  };
+
   type BaseResponseBiResponse_ = {
     code?: number;
     data?: BiResponse;
@@ -157,6 +162,12 @@ declare namespace API {
   };
 
   type genChartByAiUsingPOSTParams = {
+    chartType?: string;
+    goal?: string;
+    name?: string;
+  };
+
+  type genChartMqByAiAsyncUsingPOSTParams = {
     chartType?: string;
     goal?: string;
     name?: string;

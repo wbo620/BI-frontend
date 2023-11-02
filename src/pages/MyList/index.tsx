@@ -1,11 +1,10 @@
-import {listMyChartByPageUsingPOST} from "@/services/icebi/chartController";
-
 
 import {useModel} from '@@/exports';
 import {Card, List, message, Result} from 'antd';
 import ReactECharts from 'echarts-for-react';
 import React, {useEffect, useState} from 'react';
 import Search from "antd/es/input/Search";
+import {listMyChartByPageUsingPOST} from "@/services/icebi/chartController";
 
 
 /**

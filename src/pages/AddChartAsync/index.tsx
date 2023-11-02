@@ -1,9 +1,10 @@
-import {genChartByAiAsyncUsingPOST} from '@/services/icebi/chartController';
+
 import { Card } from 'antd';
 import { ProForm,PageContainer, ProFormText ,ProFormTextArea,ProFormUploadButton,ProFormSelect} from '@ant-design/pro-components';
 import { message} from 'antd';
 import React, { useState } from 'react';
 import {useForm} from "antd/es/form/Form";
+import {genChartMqByAiAsyncUsingPOST} from "@/services/icebi/chartController";
 
 /**
  *  添加图表（异步）页面
@@ -44,7 +45,7 @@ const AddChartAsync: React.FC = () => {
                 file: file,
               };
               try {
-                const res = await genChartByAiAsyncUsingPOST(params, {}, file);
+                const res = await genChartMqByAiAsyncUsingPOST(params, {}, file);
                 if (!res?.data) {
                   message.error('分析失败');
                 } else {
