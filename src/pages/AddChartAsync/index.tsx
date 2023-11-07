@@ -1,10 +1,11 @@
 
-import { Card } from 'antd';
+import {Button, Card, Form, Upload} from 'antd';
 import { ProForm,PageContainer, ProFormText ,ProFormTextArea,ProFormUploadButton,ProFormSelect} from '@ant-design/pro-components';
 import { message} from 'antd';
 import React, { useState } from 'react';
 import {useForm} from "antd/es/form/Form";
 import {genChartMqByAiAsyncUsingPOST} from "@/services/icebi/chartController";
+import {FontSizeOutlined, UploadOutlined} from "@ant-design/icons";
 
 /**
  *  添加图表（异步）页面
@@ -16,7 +17,7 @@ const AddChartAsync: React.FC = () => {
    * @param values
    */
   const [form] = useForm();
-  const [file, setFile] = useState<File | undefined>(undefined);
+  const [file] = useState<File | undefined>(undefined);
   const [submitting, setSubmitting] = useState<boolean>(false);
   return (
     <div>
@@ -45,7 +46,7 @@ const AddChartAsync: React.FC = () => {
                 file: file,
               };
               try {
-                const res = await genChartMqByAiAsyncUsingPOST(params, {}, file);
+                const res = await genChartMqByAiAsyncUsingPOST(params, {}, values.file.file.originFileObj);
                 if (!res?.data) {
                   message.error('分析失败');
                 } else {
@@ -62,7 +63,6 @@ const AddChartAsync: React.FC = () => {
             initialValues={{}}
           >
             <ProFormTextArea
-              width="xl"
               label="分析需求"
               name="goal"
               placeholder={'请输入你的分析需求，比如：分析网站用户增长情况。'}
@@ -88,21 +88,16 @@ const AddChartAsync: React.FC = () => {
                   { label: '动态排序折线图', value: '动态排序折线图' },
                 ]}
               />
+              <Form.Item  name="file" label="原始数据" extra="支持扩展名：.xls .xlsx" required>
+                <Upload name="file" maxCount={1}>
+                  <Button icon={<UploadOutlined />}>上传 CSV 文件</Button>
+                </Upload>
+              </Form.Item>
+
             </ProForm.Group>
-            <ProFormUploadButton
-              extra="支持扩展名：.xls .xlsx"
-              label="CSV数据文件"
-              name="file"
-              title="上传文件"
-              max={1}
-              onChange={({ fileList }: { fileList: any }) => {
-                if (fileList && fileList.length > 0) {
-                  setFile(fileList[0].originFileObj);
-                }
-              }}
-            />
           </ProForm>
         </Card>
+        <Card >提交后，请在我的图表中进行查看。</Card>
       </PageContainer>
     </div>
   );

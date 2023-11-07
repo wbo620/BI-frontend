@@ -15,7 +15,7 @@ const Welcome: React.FC = () => {
           left: 'center',
           top: 'center',
           style: {
-            text: '智能 BI',
+            text:'智能BI',
             fontSize: 80,
             fontWeight: 'bold',
             lineDash: [0, 200],
@@ -25,13 +25,13 @@ const Welcome: React.FC = () => {
             lineWidth: 1,
           },
           keyframeAnimation: {
-            duration: 3000,
+            duration: 3500,
             loop: true,
             keyframes: [
               {
                 percent: 0.7,
                 style: {
-                  fill: 'transparent',
+                  fill: 'transarent',
                   lineDashOffset: 200,
                   lineDash: [200, 0],
                 },
@@ -44,7 +44,7 @@ const Welcome: React.FC = () => {
                 },
               },
               {
-                percent: 1,
+                percent: 0.8,
                 style: {
                   fill: 'black',
                 },
@@ -193,17 +193,13 @@ const Welcome: React.FC = () => {
             </p>
             <ul>
               <li>
-                <strong>自动数据收集与整合:</strong> AI 驱动的 BI
-                系统可以自动从多个数据源中收集和整合数据。
-              </li>
-              <li>
-                <strong>自动分析与预测</strong>: 我们的系统使用 AI 算法对数据进行实时分析和预测。
+                <strong>自动分析与预测</strong>: 我们的系统使用 AI 算法对数据进行实时分析和预测，并给出结论以供参考。
               </li>
               <li>
                 <strong>生成可视化和报表</strong>: AI 驱动的 BI 系统可以自动生成交互式可视化和报表。
               </li>
               <li>
-                <strong>自动化决策支持</strong>: 最重要的是，我们的系统可以提供自动化的决策支持。
+                <strong>节省时间和人力成本</strong>: 我们的 BI 系统，可以减少相应工作人员的负担，减少不必要的成本。
               </li>
             </ul>
             <Divider />
@@ -219,7 +215,7 @@ const Welcome: React.FC = () => {
               </li>
               <li>
                 <strong>自动化</strong>: AI 驱动的 BI
-                系统能够自动执行数据整合、分析和报表生成，减轻了数据分析师的工作负担。
+                系统能够自动执行分析数据和图表生成，减轻了数据分析师的工作负担。
               </li>
               <li>
                 <strong>可扩展性</strong>: AI 驱动的系统更容易扩展，以适应不断增长的数据需求。
@@ -236,7 +232,7 @@ const Welcome: React.FC = () => {
                 只要提交数据，还有想要分析的想法，以及所要生成的图表类型，您就可能会得到以下图表。
               </p>
               <p>
-                比如：您想分析对比两年内的月平均降水量的变化，使用动态折线图的方式展示，你只要提交以下示例数据，那么AI就可以代替分析师给出建议和图表展示
+                比如：您的分许需求为:『对比两年内的月平均降水量的变化』，图表类型：『动态折线图』，你只要提交以下示例数据，那么AI就可以代替分析师给出建议和图表展示
               </p>
             </div>
             <img src={examplePic} />

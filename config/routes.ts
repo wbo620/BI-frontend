@@ -31,23 +31,6 @@ export default [
     component: './Welcome',
   },
   {
-    path: '/admin',
-    name: 'admin',
-    icon: 'crown',
-    access: 'canAdmin',
-    routes: [
-      {
-        path: '/admin',
-        redirect: '/admin/sub-page',
-      },
-      {
-        path: '/admin/sub-page',
-        name: 'sub-page',
-        component: './Admin',
-      },
-    ],
-  },
-  {
     path: '/',
     redirect: '/welcome',
   },
@@ -67,8 +50,8 @@ export default [
   {
     name: '我的图表',
     icon: 'PieChartOutlined',
-    path: '/mylist',
-    component: './MyList',
+    path: '/mychart',
+    component: './MyChart',
   },
   {
     path: '*',

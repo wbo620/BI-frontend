@@ -1,11 +1,16 @@
 import { genChartByAiUsingPOST } from '@/services/icebi/chartController';
-import { Card } from 'antd';
 import ReactECharts from 'echarts-for-react';
+import { UploadOutlined } from '@ant-design/icons';
+import {
+  ProForm,
+  PageContainer,
+  ProFormText,
+  ProFormTextArea,
+  ProFormSelect,
+} from '@ant-design/pro-components';
 
-import { ProForm,PageContainer, ProFormText ,ProFormTextArea,ProFormUploadButton,ProFormSelect} from '@ant-design/pro-components';
-import { message, Spin } from 'antd';
 import React, { useState } from 'react';
-
+import {Button, Card,  Form, message,  Spin, Upload} from 'antd';
 /**
  * 添加图表页面
  * @constructor
@@ -59,7 +64,7 @@ const AddChart: React.FC = () => {
 
   const [chart, setChart] = useState<API.BiResponse>();
   const [option, setOption] = useState<any>();
-  const [file, setFile] = useState<File | undefined>(undefined);
+  const [file] = useState<File | undefined>(undefined);
   const [submitting, setSubmitting] = useState<boolean>(false);
   return (
     <div>
@@ -89,7 +94,7 @@ const AddChart: React.FC = () => {
                 file: file,
               };
               try {
-                const res = await genChartByAiUsingPOST(params, {}, file);
+                const res = await genChartByAiUsingPOST(params, {}, values.file.file.originFileObj);
                 console.log(res);
                 if (!res?.data) {
                   message.error('分析失败');
@@ -100,7 +105,7 @@ const AddChart: React.FC = () => {
                   message.success('分析成功');
                   const chartOption = JSON.parse(res.data.genChart ?? '');
                   if (!chartOption) {
-                    throw new Error('图代码解析错误');
+                    throw new Error('图表代码解析错误');
                   } else {
                     setChart(res.data);
                     setOption(null);
@@ -118,7 +123,6 @@ const AddChart: React.FC = () => {
           >
 
             <ProFormTextArea
-              width="xl"
               label="分析需求"
               name="goal"
               placeholder={'请输入你的分析需求，比如：分析网站用户增长情况。'}
@@ -145,19 +149,13 @@ const AddChart: React.FC = () => {
                   { label: '动态排序折线图', value: '动态排序折线图' },
                 ]}
               />
+              <Form.Item name="file" label="原始数据" extra="支持扩展名：.xls .xlsx" required>
+              <Upload name="file" maxCount={1}>
+                <Button icon={<UploadOutlined />}>上传 CSV 文件</Button>
+              </Upload>
+            </Form.Item>
             </ProForm.Group>
-            <ProFormUploadButton
-              extra="支持扩展名：.xls .xlsx"
-              label="CSV数据文件"
-              name="file"
-              title="上传文件"
-              max={1}
-              onChange={({ fileList }: { fileList: any }) => {
-                if (fileList && fileList.length > 0) {
-                  setFile(fileList[0].originFileObj);
-                }
-              }}
-            />
+
           </ProForm>
         </Card>
       </PageContainer>
@@ -172,7 +170,7 @@ const AddChart: React.FC = () => {
               </Card>
               {/*图表数据存在才渲染图表*/}
               <Card title="可视化图表">
-                {option ? <ReactECharts option={option} /> : <div>请先提交数据</div>}
+                {option ? <ReactECharts   option={option} /> : <div>请先提交数据</div>}
               </Card>
             </div>
           ) : (

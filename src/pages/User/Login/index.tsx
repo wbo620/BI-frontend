@@ -86,7 +86,7 @@ const Login: React.FC = () => {
           }}
           logo={<img alt="logo" src="/logo.svg" />}
           title="智能 BI"
-          subTitle={<p>有智慧的图表分析工具</p>}
+          subTitle={<p>一个有智慧的数据分析+图表生成工具</p>}
           onFinish={async (values) => {
             await handleSubmit(values as API.UserLoginRequest);
           }}
