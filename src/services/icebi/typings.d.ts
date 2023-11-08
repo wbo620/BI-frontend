@@ -328,6 +328,11 @@ declare namespace API {
     userId?: number;
   };
 
+  type sendQuestionUsingGETParams = {
+    /** question */
+    question: string;
+  };
+
   type uploadFileUsingPOSTParams = {
     biz?: string;
   };

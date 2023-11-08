@@ -1,12 +1,12 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { Card, Divider, theme } from 'antd';
+import {Card, Divider, Image, theme} from 'antd';
 import ReactECharts from 'echarts-for-react';
 import React from 'react';
 import examplePic from '../components/Picture/example2.png';
 
 const Welcome: React.FC = () => {
   const { token } = theme.useToken();
-
+//todo 待修复：增加图表删除按钮
   const example1 = {
     graphic: {
       elements: [
@@ -16,7 +16,7 @@ const Welcome: React.FC = () => {
           top: 'center',
           style: {
             text:'智能BI',
-            fontSize: 80,
+            fontSize: 70,
             fontWeight: 'bold',
             lineDash: [0, 200],
             lineDashOffset: 0,
@@ -150,8 +150,11 @@ const Welcome: React.FC = () => {
   };
   return (
     <PageContainer>
-      <Card>
+
+      <div>
         <ReactECharts option={example1} />
+      </div>
+      <Card >
 
         <div
           style={{
@@ -235,23 +238,30 @@ const Welcome: React.FC = () => {
                 比如：您的分许需求为:『对比两年内的月平均降水量的变化』，图表类型：『动态折线图』，你只要提交以下示例数据，那么AI就可以代替分析师给出建议和图表展示
               </p>
             </div>
-            <img src={examplePic} />
-            <ReactECharts option={example2} />
-            <div>
-              <strong>分析结论:</strong>
-              <br />
-              <br />
-              <p>根据这些数据，我们可以得出以下降水量的增长趋势： </p>
-              <p> 从1月到3月，两年的降水量都在增加，但2016年的增幅较大。 </p>
-              <p> 在4月，2016年的降水量继续增加，但2015年的也有显著增长。 </p>
-              <p>
-                从5月到7月，2016年的降水量迅速增加，特别是7月，降水量急剧上升，而2015年的降水量相对较低。{' '}
-              </p>
-              <p>从8月到12月，两年的降水量都有所下降，但2015年的降水量大部分时间都高于2016年。 </p>
-              <p>
-                总体来说，2015年和2016年的降水量数据显示出季节性变化，但2016年的降水量在某些月份明显高于2015年，尤其是夏季。这可能反映了气象条件的年度变化，或者是其他因素导致的降水量波动。{' '}
-              </p>
+
+              <Image src={examplePic} />
+
+            <div >
+              <ReactECharts option={example2} />
             </div>
+
+              <div>
+                <strong>分析结论:</strong>
+                <br />
+                <br />
+                <p>根据这些数据，我们可以得出以下降水量的增长趋势： </p>
+                <p> 从1月到3月，两年的降水量都在增加，但2016年的增幅较大。 </p>
+                <p> 在4月，2016年的降水量继续增加，但2015年的也有显著增长。 </p>
+                <p>
+                  从5月到7月，2016年的降水量迅速增加，特别是7月，降水量急剧上升，而2015年的降水量相对较低。{' '}
+                </p>
+                <p>从8月到12月，两年的降水量都有所下降，但2015年的降水量大部分时间都高于2016年。 </p>
+                <p>
+                  总体来说，2015年和2016年的降水量数据显示出季节性变化，但2016年的降水量在某些月份明显高于2015年，尤其是夏季。这可能反映了气象条件的年度变化，或者是其他因素导致的降水量波动。{' '}
+                </p>
+              </div>
+
+
           </article>
         </div>
       </Card>

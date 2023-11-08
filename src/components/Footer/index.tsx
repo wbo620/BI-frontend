@@ -1,13 +1,13 @@
-import { GithubOutlined } from '@ant-design/icons';
-import { DefaultFooter } from '@ant-design/pro-components';
-import { useIntl } from '@umijs/max';
+import {GithubOutlined, PhoneFilled, QqOutlined} from '@ant-design/icons';
+import {DefaultFooter} from '@ant-design/pro-components';
+import {useIntl} from '@umijs/max';
 import React from 'react';
 
 const Footer: React.FC = () => {
   const intl = useIntl();
   const defaultMessage = intl.formatMessage({
     id: 'app.copyright.produced',
-    defaultMessage: '蚂蚁集团体验技术部出品',
+    defaultMessage: 'ICE出品',
   });
 
   const currentYear = new Date().getFullYear();
@@ -20,21 +20,27 @@ const Footer: React.FC = () => {
       copyright={`${currentYear} ${defaultMessage}`}
       links={[
         {
-          key: '智能 BI',
-          title: '智能 BI',
+          key: 'QQ',
+          title: <QqOutlined/>,
           href: 'https://pro.ant.design',
           blankTarget: true,
         },
         {
           key: 'github',
-          title: <GithubOutlined />,
-          href: 'https://github.com/ant-design/ant-design-pro',
+          title: <GithubOutlined/>,
+          href: 'https://gitee.com/wbo620',
           blankTarget: true,
         },
         {
-          key: '智能 BI',
-          title: '智能 BI',
-          href: 'https://ant.design',
+          key: 'wbo',
+          title: 'wbo',
+          href: 'https://gitee.com/wbo620',
+          blankTarget: true,
+        },
+        {
+          key: 'phone',
+          title: <PhoneFilled/>,
+          href: 'https://gitee.com/wbo620',
           blankTarget: true,
         },
       ]}
