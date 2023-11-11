@@ -1,7 +1,7 @@
 import {useModel} from '@@/exports';
 import {Button, Card, Divider, List, message, Modal, Result} from 'antd';
 import ReactECharts from 'echarts-for-react';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Search from "antd/es/input/Search";
 import {deleteChartUsingPOST, listMyChartByPageUsingPOST} from "@/services/icebi/chartController";
 import {ModalForm} from "@ant-design/pro-form";
@@ -22,7 +22,6 @@ const MyChartPage: React.FC = () => {
   const [chartList, setChartList] = useState<API.Chart[]>();
   const [total, setTotal] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
-  const chartRef = useRef(null);
   const loadData = async () => {
     setLoading(true)
     try {
@@ -51,11 +50,7 @@ const MyChartPage: React.FC = () => {
   useEffect(() => {
     loadData();
   }, [searchParams])
-  const handleModalOpen = () => {
-    if (chartRef.current) {
-      chartRef.current.getEchartsInstance().resize(); // Trigger ECharts rendering
-    }
-  }
+
   // 删除图表
   const handleDelete = async (id: number) => {
     try {
@@ -70,6 +65,7 @@ const MyChartPage: React.FC = () => {
       message.error('删除失败');
     }
   };
+
   return (
     <div className='my-chart'>
       <div>
@@ -148,9 +144,7 @@ const MyChartPage: React.FC = () => {
 
                     <div>
                       <ReactECharts
-                        ref={chartRef}
                         option={item.genChart && JSON.parse(item.genChart)}
-                        onChartReady={handleModalOpen}
                       />
                     </div>
 
@@ -194,7 +188,6 @@ const MyChartPage: React.FC = () => {
                           return true;
                         }}
                       >
-
                         <div style={{marginBottom: 16}}/>
                         <div>{'图表标题: ' + item.name}</div>
                         <div>{'图表ID: ' + item.id}</div>
@@ -209,13 +202,14 @@ const MyChartPage: React.FC = () => {
                         <div>{'分析目标：' + item.goal}</div>
                         <div style={{marginBottom: 16}}/>
 
-
-                        <div style={{width: '100%'}}>
-                          <ReactECharts option={item.genChart && JSON.parse(item.genChart)} style={{ width: '100%'}}/>
-                        </div>
-
+                        {/*修复bug 把ReactECharts放入Card标签中*/}
+                        {/*出现bug的原因可能是，option的加载比div的加载速度快，导致第一次加载没有挂在到div里，再次点开，才被挂载到*/}
+                        <Card>
+                          <ReactECharts
+                            option={item.genChart && JSON.parse(item.genChart)}
+                          />
+                        </Card>
                         <div>{item.genResult}</div>
-
                       </ModalForm>
                     </div>
                   </>
