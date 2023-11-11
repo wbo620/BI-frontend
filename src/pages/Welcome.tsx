@@ -238,13 +238,10 @@ const Welcome: React.FC = () => {
                 比如：您的分许需求为:『对比两年内的月平均降水量的变化』，图表类型：『动态折线图』，你只要提交以下示例数据，那么AI就可以代替分析师给出建议和图表展示
               </p>
             </div>
-
-              <Image src={examplePic} />
-
-            <div >
+            <Image src={examplePic} />
+            <div>
               <ReactECharts option={example2} />
             </div>
-
               <div>
                 <strong>分析结论:</strong>
                 <br />

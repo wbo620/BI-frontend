@@ -7,6 +7,8 @@ import {history} from '@umijs/max';
 import {AvatarDropdown, AvatarName} from './components/RightContent/AvatarDropdown';
 import {errorConfig} from './requestErrorConfig';
 import {SmileTwoTone} from "@ant-design/icons";
+import React from "react";
+
 
 // const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -45,7 +47,11 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
   const userName = initialState?.currentUser?.userName || defaultUserName;
   const userAvatar = initialState?.currentUser?.userAvatar || defaultUserAvatar;
 
+
+//scrollContainer 是滚动容器的结点，懒加载默认监听容器的滚动事件
+
   return {
+
     actionsRender: () => [<Question key="doc"/>, <SelectLang key="SelectLang"/>],
     avatarProps: {
       src: userAvatar,

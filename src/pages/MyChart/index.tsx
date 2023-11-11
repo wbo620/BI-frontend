@@ -1,10 +1,11 @@
 import {useModel} from '@@/exports';
-import {Button, Card, Divider, List, message, Modal, Result} from 'antd';
+import {Button, Card, List, message, Modal, Result} from 'antd';
 import ReactECharts from 'echarts-for-react';
 import React, {useEffect, useState} from 'react';
 import Search from "antd/es/input/Search";
 import {deleteChartUsingPOST, listMyChartByPageUsingPOST} from "@/services/icebi/chartController";
 import {ModalForm} from "@ant-design/pro-form";
+import MyCard from "@/components/Mychart";
 
 /**
  * 我的图表页面
@@ -22,6 +23,7 @@ const MyChartPage: React.FC = () => {
   const [chartList, setChartList] = useState<API.Chart[]>();
   const [total, setTotal] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
+
   const loadData = async () => {
     setLoading(true)
     try {
@@ -113,7 +115,6 @@ const MyChartPage: React.FC = () => {
               {/*图表的信息*/}
               <List.Item.Meta
                 title={item.name}
-
                 description={item.chartType ? '图表类型: ' + item.chartType : undefined}
               />
               {/* 图表展示*/}
@@ -141,19 +142,14 @@ const MyChartPage: React.FC = () => {
                     <div style={{marginBottom: 16}}/>
                     <p>{'分析目标：' + item.goal}</p>
                     <div style={{marginBottom: 16}}/>
-
                     <div>
-                      <ReactECharts
-                        option={item.genChart && JSON.parse(item.genChart)}
-                      />
+                      <ReactECharts option={item.genChart && JSON.parse(item.genChart)} />
                     </div>
-
-
                     <div>{item.genResult}</div>
-                    <Divider/>
+                  <div className='margin-16'/>
                     <div style={{textAlign: 'right'}}>
                       <Button danger key="delete"
-                              style={{bottom: 1}}
+                              style={{ marginLeft: '10px', marginRight: '10px', bottom: '1' }}
                               onClick={() => {
                                 Modal.confirm({
                                   title: '确认删除',
@@ -163,9 +159,10 @@ const MyChartPage: React.FC = () => {
                               }}>
                         删除
                       </Button>
+
                       <ModalForm
                         title="详情"
-                        trigger={<Button type="primary">详情</Button>}
+                        trigger={<Button type="primary" >详情</Button>}
                         width="80%"
                         submitter={{
                           render: () => {
@@ -201,14 +198,12 @@ const MyChartPage: React.FC = () => {
                         })}</div>
                         <div>{'分析目标：' + item.goal}</div>
                         <div style={{marginBottom: 16}}/>
-
                         {/*修复bug 把ReactECharts放入Card标签中*/}
                         {/*出现bug的原因可能是，option的加载比div的加载速度快，导致第一次加载没有挂在到div里，再次点开，才被挂载到*/}
-                        <Card>
-                          <ReactECharts
-                            option={item.genChart && JSON.parse(item.genChart)}
-                          />
-                        </Card>
+
+                       <MyCard item={item}/>
+
+
                         <div>{item.genResult}</div>
                       </ModalForm>
                     </div>
@@ -221,7 +216,7 @@ const MyChartPage: React.FC = () => {
                       title="图表生成失败"
                       subTitle={item.execMessage}
                     />
-                    <div style={{textAlign: 'right'}}>
+                    <div style={{textAlign:"right"}}>
                       <Button danger key="delete"
                               onClick={() => {
                                 Modal.confirm({
@@ -245,3 +240,4 @@ const MyChartPage: React.FC = () => {
 };
 
 export default MyChartPage;
+
