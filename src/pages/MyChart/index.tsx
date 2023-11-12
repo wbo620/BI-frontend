@@ -1,5 +1,5 @@
-import {useModel} from '@@/exports';
-import {Button, Card, List, message, Modal, Result} from 'antd';
+
+import {Avatar, Button, Card, List, message, Modal, Result} from 'antd';
 import ReactECharts from 'echarts-for-react';
 import React, {useEffect, useState} from 'react';
 import Search from "antd/es/input/Search";
@@ -19,7 +19,7 @@ const MyChartPage: React.FC = () => {
     sortOrder: 'desc',
   }
   const [searchParams, setSearchParams] = useState<API.ChartQueryRequest>({...initSearchParams});
-  const {initialState} = useModel('@@initialState');
+
   const [chartList, setChartList] = useState<API.Chart[]>();
   const [total, setTotal] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
@@ -71,7 +71,7 @@ const MyChartPage: React.FC = () => {
   return (
     <div className='my-chart'>
       <div>
-        <Search placeholder="请输入图表名称" enterButton onSearch={(value) => {
+        <Search placeholder="请输入图表名称" enterButton loading={loading} onSearch={(value) => {
           // 设置搜索条件
           setSearchParams({
             ...initSearchParams,
@@ -90,7 +90,6 @@ const MyChartPage: React.FC = () => {
           xl: 2,
           xxl: 2,
         }}
-        size="large"
         pagination={{
           onChange: (page, pageSize) => {
             setSearchParams({
@@ -111,7 +110,7 @@ const MyChartPage: React.FC = () => {
             key={item.id}
             style={{marginBottom: 10}}
           >
-            <Card>
+            <Card style={{ width: '100%' }}>
               {/*图表的信息*/}
               <List.Item.Meta
                 title={item.name}
