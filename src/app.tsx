@@ -134,6 +134,7 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
 export const request = {
   // baseURL: 'http://43.143.183.24:8101',
   baseURL: 'http://localhost:8101',
+  // baseURL: 'http:///10.211.55.8:8101',
   withCredentials: true,
   ...errorConfig,
 };

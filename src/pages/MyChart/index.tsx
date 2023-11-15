@@ -1,5 +1,5 @@
 
-import {Avatar, Button, Card, List, message, Modal, Result} from 'antd';
+import { Button, Card, List, message, Modal, Result} from 'antd';
 import ReactECharts from 'echarts-for-react';
 import React, {useEffect, useState} from 'react';
 import Search from "antd/es/input/Search";
@@ -158,7 +158,6 @@ const MyChartPage: React.FC = () => {
                               }}>
                         删除
                       </Button>
-
                       <ModalForm
                         title="详情"
                         trigger={<Button type="primary" >详情</Button>}
