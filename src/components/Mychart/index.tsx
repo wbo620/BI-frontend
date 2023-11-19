@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card } from 'antd';
 import ReactECharts from 'echarts-for-react';
 // 延迟加载详情页的图表，修复第一次打开图表不显示的问题
-const MyCard = ({ item }) => {
+const MyCard = ({ genChart }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const MyCard = ({ item }) => {
     <Card>
       {isLoaded && (
         <ReactECharts
-          option={item.genChart && JSON.parse(item.genChart)}
+          option={genChart && JSON.parse(genChart)}
         />
       )}
     </Card>
