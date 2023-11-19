@@ -6,7 +6,7 @@ import { LoginForm, ProFormText } from '@ant-design/pro-components';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { Helmet, history, useModel } from '@umijs/max';
 import { message, Tabs } from 'antd';
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { flushSync } from 'react-dom';
 import Settings from '../../../../config/defaultSettings';
 //TODO bug登录成功后头像一直加载，刷新页面后才显示
@@ -24,13 +24,6 @@ const Login: React.FC = () => {
       backgroundSize: '100% 100%',
     };
   });
-
-  // useEffect(() => {
-  //   listChartByPageUsingPOST({}).then((res) => {
-  //     console.error('res', res);
-  //   });
-  // });
-
   /**
    * 登陆成功后，获取用户登录信息
    */
@@ -56,6 +49,9 @@ const Login: React.FC = () => {
         await fetchUserInfo();
         const urlParams = new URL(window.location.href).searchParams;
         history.push(urlParams.get('redirect') || '/');
+
+        //登陆成功后全局刷新，解决第一次登陆，头像刷新，无法退出的问题
+        window.location.reload(true);
         return;
       } else {
         message.error(res.message);
