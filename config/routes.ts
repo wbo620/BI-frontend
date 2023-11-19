@@ -20,7 +20,9 @@ export default [
         path: '/user/login',
         component: './User/Login',
       },
-      { name: 'register', path: '/user/register', component: './User/Register' },
+      { name: 'register',
+        path: '/user/register',
+        component: './User/Register' },
 
     ],
   },

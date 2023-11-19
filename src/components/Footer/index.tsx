@@ -10,6 +10,7 @@ const Footer: React.FC = () => {
     defaultMessage: 'ICE出品',
   });
 
+
   const currentYear = new Date().getFullYear();
 
   return (
@@ -32,19 +33,26 @@ const Footer: React.FC = () => {
           blankTarget: true,
         },
         {
-          key: 'wbo',
-          title: 'wbo',
-          href: 'https://gitee.com/wbo620',
-          blankTarget: true,
-        },
-        {
           key: 'phone',
           title: <PhoneFilled/>,
           href: 'https://gitee.com/wbo620',
           blankTarget: true,
         },
+        {
+          key: 'beian',
+          title: (<React.Fragment>
+              <br />
+              <div>
+                辽ICP备2023012583号
+              </div>
+            </React.Fragment>
+          ),
+          href: 'https://beian.miit.gov.cn/',
+          blankTarget: true,
+        }
       ]}
     />
+
   );
 };
 
