@@ -3,14 +3,15 @@ import {Button, message, Modal} from 'antd';
 import {ModalForm} from "@ant-design/pro-form";
 import MyCard from "@/components/Mychart";
 import {deleteChartUsingPOST} from "@/services/icebi/chartController";
+
 // 将详情，删除按钮封装
 const MyModelFrom = ({item, onChartDeleted}) => {
-
 
   // 删除图表
   const handleDelete = async (id: number) => {
     try {
       const res = await deleteChartUsingPOST({id});
+
       if (res.code !== 0) {
         message.error('删除失败')
       }
@@ -23,6 +24,7 @@ const MyModelFrom = ({item, onChartDeleted}) => {
       message.error('删除失败');
     }
   };
+
 
   return (
     <div style={{textAlign: 'right'}}>

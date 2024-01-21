@@ -5,9 +5,9 @@ import {SettingDrawer} from '@ant-design/pro-components';
 import type {RunTimeLayoutConfig} from '@umijs/max';
 import {history} from '@umijs/max';
 import {AvatarDropdown, AvatarName} from './components/RightContent/AvatarDropdown';
-import {errorConfig} from './requestErrorConfig';
 import {SmileTwoTone} from "@ant-design/icons";
 import React from "react";
+import {errorConfig} from "@/requestConfig";
 
 
 // const isDev = process.env.NODE_ENV === 'development';
@@ -133,8 +133,8 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
  */
 export const request = {
   // baseURL: 'http://43.143.183.24:8101',
-  baseURL: 'http://wubo.store:8101',
-  // baseURL: 'http://localhost:8101',
+  // baseURL: 'http://wubo.store:8101',
+  baseURL: 'http://localhost:8101',
   // baseURL: 'http:///10.211.55.8:8101',
   withCredentials: true,
   ...errorConfig,

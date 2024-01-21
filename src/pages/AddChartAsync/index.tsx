@@ -85,6 +85,8 @@ const AddChartAsync: React.FC = () => {
                   { label: '饼图', value: '饼图' },
                   { label: '堆叠图', value: '堆叠图' },
                   { label: '雷达图', value: '雷达图' },
+                  { label: '散点图', value: '散点图' },
+                  { label: 'K线图', value: 'K线图' },
                   { label: '动态排序折线图', value: '动态排序折线图' },
                 ]}
               />

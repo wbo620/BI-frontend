@@ -51,7 +51,7 @@ const Login: React.FC = () => {
         history.push(urlParams.get('redirect') || '/');
 
         //登陆成功后全局刷新，解决第一次登陆，头像刷新，无法退出的问题
-        window.location.reload(true);
+        window.location.reload();
         return;
       } else {
         message.error(res.message);

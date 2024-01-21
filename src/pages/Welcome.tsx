@@ -6,7 +6,7 @@ import examplePic from '../components/Picture/example2.png';
 
 const Welcome: React.FC = () => {
   const { token } = theme.useToken();
-//todo 待修复：增加图表删除按钮
+
   const example1 = {
     graphic: {
       elements: [
