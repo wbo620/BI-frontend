@@ -30,20 +30,31 @@ const UserAdminPage: React.FC = () => {
   const handleDelete = async (row: API.User) => {
     const hide = message.loading('正在删除');
     if (!row) return true;
+
     try {
-      await deleteUserUsingPOST({
+      // 调用后台删除用户的接口
+      const response = await deleteUserUsingPOST({
         id: row.id as any,
       });
-      hide();
-      message.success('删除成功');
-      actionRef?.current?.reload();
-      return true;
+
+      // 根据后台返回的信息判断操作是否成功
+      if (response && response.code === 0) {
+        hide();
+        message.success('删除成功');
+        actionRef?.current?.reload();
+        return true;
+      } else {
+        hide();
+        message.error('删除失败，' + (response ? response.message : '未知错误'));
+        return false;
+      }
     } catch (error: any) {
       hide();
       message.error('删除失败，' + error.message);
       return false;
     }
   };
+
 
   /**
    * 表格列配置
@@ -72,12 +83,6 @@ const UserAdminPage: React.FC = () => {
       fieldProps: {
         width: 64,
       },
-      hideInSearch: true,
-    },
-    {
-      title: '简介',
-      dataIndex: 'userProfile',
-      valueType: 'textarea',
       hideInSearch: true,
     },
     {
@@ -136,7 +141,7 @@ const UserAdminPage: React.FC = () => {
         actionRef={actionRef}
         rowKey="key"
         search={{
-          labelWidth: 120,
+          labelWidth: 80,
         }}
         toolBarRender={() => [
           <Button

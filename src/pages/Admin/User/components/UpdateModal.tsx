@@ -18,17 +18,27 @@ interface Props {
  * @param fields
  */
 const handleUpdate = async (fields: API.UserUpdateRequest) => {
-  const hide = message.loading('正在更新');
-  try {
-    await updateUserUsingPOST(fields);
-    hide();
-    message.success('更新成功');
-    return true;
-  } catch (error: any) {
-    hide();
-    message.error('更新失败，' + error.message);
-    return false;
-  }
+    const hide = message.loading('正在更新');
+
+    try {
+        // 调用后台更新用户的接口
+        const response = await updateUserUsingPOST(fields);
+
+        // 根据后台返回的信息判断更新是否成功
+        if (response && response.code === 200) {
+            hide();
+            message.success('更新成功');
+            return true;
+        } else {
+            hide();
+            message.error('更新失败，' + (response ? response.message : '未知错误'));
+            return false;
+        }
+    } catch (error: any) {
+        hide();
+        message.error('更新失败，' + error.message);
+        return false;
+    }
 };
 
 /**
